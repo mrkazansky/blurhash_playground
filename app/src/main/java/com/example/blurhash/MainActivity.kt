@@ -73,7 +73,7 @@ class MainActivity : ComponentActivity() {
             var componentY by remember { mutableStateOf("3") }
             val coroutineScope = rememberCoroutineScope()
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Image(
               modifier = Modifier
@@ -96,6 +96,11 @@ class MainActivity : ComponentActivity() {
                 onValueChange = {
                   componentX = it
                 },
+                supportingText = {
+                  Text(
+                    text = "X component counts"
+                  )
+                },
                 placeholder = {
                   Text(
                     text = "X counts"
@@ -113,6 +118,11 @@ class MainActivity : ComponentActivity() {
                 onValueChange = {
                   componentY = it
                 },
+                supportingText = {
+                  Text(
+                    text = "Y component counts"
+                  )
+                },
                 placeholder = {
                   Text(
                     text = "Y counts"
@@ -125,8 +135,10 @@ class MainActivity : ComponentActivity() {
             val keyboard = LocalSoftwareKeyboardController.current
 
             Button(onClick = {
+              var x = componentX.toIntOrNull() ?: return@Button
+              var y = componentY.toIntOrNull() ?: return@Button
               keyboard?.hide()
-              hash = "Calculating..."
+              hash = "Loading"
               val start = System.currentTimeMillis()
               encodeTime = 0L
               val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.image)
@@ -134,8 +146,8 @@ class MainActivity : ComponentActivity() {
                 context,
                 coroutineScope,
                 bitmap,
-                componentX.toIntOrNull() ?: 1,
-                componentY.toIntOrNull() ?: 1
+                x,
+                y
               ) {
                 hash = it
                 encodeTime = (System.currentTimeMillis() - start)
@@ -148,7 +160,7 @@ class MainActivity : ComponentActivity() {
 
             Text(
               textAlign = TextAlign.Center,
-              text = "Blur Hash (${encodeTime}ms):"
+              text = "Encoded Time (${encodeTime}ms)"
             )
 
             Text(
@@ -161,9 +173,9 @@ class MainActivity : ComponentActivity() {
             var decodeTime by remember { mutableLongStateOf(0L) }
             var bitmap by remember { mutableStateOf<Bitmap?>(null) }
             LaunchedEffect(key1 = hash) {
-              if (hash.isNotEmpty()) {
+              if (hash != "Loading") {
                 val start = System.currentTimeMillis()
-                bitmap = BlurHash.decode(hash, 300, 150)
+                bitmap = BlurHash.decode(hash, 700, 350)
                 decodeTime = (System.currentTimeMillis() - start)
               }
             }
