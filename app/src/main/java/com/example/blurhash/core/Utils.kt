@@ -1,4 +1,4 @@
-package com.example.blurhash.hash
+package com.example.blurhash.core
 
 import kotlin.math.PI
 import kotlin.math.abs

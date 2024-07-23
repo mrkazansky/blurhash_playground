@@ -1,4 +1,4 @@
-package com.example.blurhash.hash
+package com.example.blurhash.core
 
 import android.graphics.Bitmap
 

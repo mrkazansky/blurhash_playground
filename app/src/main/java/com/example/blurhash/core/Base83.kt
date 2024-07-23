@@ -1,4 +1,4 @@
-package com.example.blurhash.hash
+package com.example.blurhash.core
 
 internal object Base83 {
   val CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~".toCharArray()

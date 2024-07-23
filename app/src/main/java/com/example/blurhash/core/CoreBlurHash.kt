@@ -1,8 +1,8 @@
-package com.example.blurhash.hash
+package com.example.blurhash.core
 
-import com.example.blurhash.hash.Utils.applyBasisFunction
-import com.example.blurhash.hash.Utils.encodeAc
-import com.example.blurhash.hash.Utils.encodeDc
+import com.example.blurhash.core.Utils.applyBasisFunction
+import com.example.blurhash.core.Utils.encodeAc
+import com.example.blurhash.core.Utils.encodeDc
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.floor

@@ -1,4 +1,4 @@
-package com.example.blurhash.hash
+package com.example.blurhash.core
 
 internal interface PixelReader {
   /** Returns the red components of the pixel at the [x]-[y] coordinate. */
